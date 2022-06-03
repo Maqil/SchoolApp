@@ -78,7 +78,7 @@ function ShipmentsDashboard() {
   const [initialDataLoadedFlag, setInitialDataLoadedFlag] = useState(false);
   const [noResults, setNoResults] = useState(false);
 
-  TabTitle(t("shipments-dashboard.block1.header.page-title"));
+  TabTitle(t("todo-dashboard.block1.header.page-title"));
 
   useEffect(() => {
     // call getShipmentsData
@@ -162,9 +162,8 @@ function ShipmentsDashboard() {
     <Box sx={{ flexGrow: 1 }}>
       <PageHeader>
         <Typography component="h1" variant="h2" className="pageTitle">
-          {t("shipments-dashboard.block1.header.page-title")}
+          {t("todo-dashboard.block1.header.page-title")}
         </Typography>
-        {shipmentContext.loading}
         <Box className="headerExtra">
           <ShipmentsDatePicker
             startDate={listState.startDate}
@@ -175,7 +174,7 @@ function ShipmentsDashboard() {
         </Box>
       </PageHeader>
 
-      <ShipmentsFilterPanel dispatchList={dispatchList} />
+      {/* <ShipmentsFilterPanel dispatchList={dispatchList} /> */}
 
       <ShipmentsOverviewPanel
         booked={overview.booked}
@@ -191,7 +190,7 @@ function ShipmentsDashboard() {
         initialDataLoadedFlag={initialDataLoadedFlag}
       />
 
-      <ShipmentsListPanel
+      {/* <ShipmentsListPanel
         listState={listState}
         dispatchList={dispatchList}
         rows={rows}
@@ -199,7 +198,7 @@ function ShipmentsDashboard() {
         initialDataLoadedFlag={initialDataLoadedFlag}
         noResults={noResults}
         loading={shipmentContext.loading}
-      />
+      /> */}
     </Box>
   );
 }

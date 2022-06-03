@@ -1,6 +1,6 @@
 {
   "name": "react-base",
-  "homepage": "/portal/",
+  "homepage": "portal/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

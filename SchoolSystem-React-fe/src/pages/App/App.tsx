@@ -22,18 +22,21 @@ function App() {
   const apiError = useApiError();
   const navigate = useNavigate();
   const pathName = useLocation().pathname;
+  
 
   useEffect(() => {
     const loginPages = ["/login", "/forgot-password"];
-    // user.checkSessionExpired();
+    user.checkSessionExpired();
     if (!user.loading && user.user === null && !loginPages.includes(pathName)) {
       const state = JSON.parse(sessionStorage.getItem("alertMessage") || "{}");
+      console.log("if:");
       navigate("/login", { state: state });
     } else if (
       !user.loading &&
       user.user !== null &&
       loginPages.includes(pathName)
     ) {
+      console.log("else if:");
       navigate("/shipments-dashboard");
     }
   }, [navigate, user, pathName]);

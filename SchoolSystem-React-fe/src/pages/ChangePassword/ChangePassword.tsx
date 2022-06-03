@@ -43,7 +43,8 @@ const ChangePassword = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   TabTitle(t("changePassword.block1.header.page-title"));
-  const { user, changePassword } = useAuth();
+  const { user } = useAuth();
+  // const { user, changePassword } = useAuth();
 
   const [submittedValues, setSubmittedValues] = useState<
     ChangePasswordInterface | undefined
@@ -67,23 +68,23 @@ const ChangePassword = () => {
     setSubmittedValues(values);
 
     //component coming from forgotPassword page
-    const data: any = await changePassword(
-      user,
-      values.oldPassword,
-      values.newPassword
-    );
+    // const data: any = await changePassword(
+    //   user,
+    //   values.oldPassword,
+    //   values.newPassword
+    // );
 
-    if (data.status === "FAIL" || data.error) {
-      return { [FORM_ERROR]: "changePassword.block-form.changeError" };
-    } else {
-      navigate("/view-profile", {
-        state: {
-          showAlert: true,
-          severity: "success",
-          message: "resetPassword.header.page-success-alert"
-        }
-      });
-    }
+    // if (data.status === "FAIL" || data.error) {
+    //   return { [FORM_ERROR]: "changePassword.block-form.changeError" };
+    // } else {
+    //   navigate("/view-profile", {
+    //     state: {
+    //       showAlert: true,
+    //       severity: "success",
+    //       message: "resetPassword.header.page-success-alert"
+    //     }
+    //   });
+    // }
   };
 
   const handleMouseDownPassword = event => {

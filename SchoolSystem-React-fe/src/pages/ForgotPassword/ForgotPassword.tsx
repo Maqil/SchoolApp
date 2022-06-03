@@ -36,7 +36,7 @@ const ForgotPassword = () => {
 
   const { t } = useTranslation();
   TabTitle(t("forgotPassword.block1.header.page-title"));
-  const { forgotPassword } = useAuth();
+  // const { forgotPassword } = useAuth();
   const [submittedValues, setSubmittedValues] = useState<
     ForgotPasswordInterface | undefined
   >(undefined);
@@ -49,12 +49,12 @@ const ForgotPassword = () => {
 
   const onSubmit = async (values: ForgotPasswordInterface) => {
     setSubmittedValues(values);
-    const submit: any = await forgotPassword(values.email);
-    if (submit.status === "FAIL" || submit.error) {
-      return { [FORM_ERROR]: "forgotPassword.block-form.loginError" };
-    } else {
-      setShowResetPassword(true);
-    }
+    // const submit: any = await forgotPassword(values.email);
+    // if (submit.status === "FAIL" || submit.error) {
+    //   return { [FORM_ERROR]: "forgotPassword.block-form.loginError" };
+    // } else {
+    //   setShowResetPassword(true);
+    // }
   };
 
   return (

@@ -60,7 +60,7 @@
   "changePassword.block-form.button.cancel": "Annuler",
   "changePassword.block-form.error.oldPassword-required": "Oups! Vous semblez ne pas avoir indiqué votre ancien mot de passe.",
   "changePassword.block-form.changeError": "Votre ancien mot de passe est erroné. Essayez de nouveau.",
-  "shipments-dashboard.block1.header.page-title": "Liste des envois",
+  "todo-dashboard.block1.header.page-title": "Liste des tâches",
   "shipments-dashboard.date.label.from": "De",
   "shipments-dashboard.date.label.to": "À",
   "shipments-dashboard.date.label.toolbar": "Sélectionner la plage de dates (limite de {{maxDateRange}} jours)",

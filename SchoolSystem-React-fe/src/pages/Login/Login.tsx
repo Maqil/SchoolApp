@@ -15,6 +15,7 @@ import { useTranslation } from "react-i18next";
 import i18n from "i18next";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import signinImg from "../../assets/images/signin-image.jpg";
 import {
   CheckBoxWrapper,
   LoginBox,
@@ -89,22 +90,27 @@ const Login = () => {
 
   const onSubmit = async (values: LoginInterface) => {
     setSubmittedValues(values);
-    //handle rememberEmail
-    if (values.email !== "" && values.rememberEmail === true) {
-      localStorage.setItem("rememberEmail", values.rememberEmail.toString());
-      localStorage.setItem("email", values.email);
-    } else {
-      localStorage.setItem("rememberEmail", "false");
-      localStorage.setItem("email", "");
-    }
+    // //handle rememberEmail
+    // if (values.email !== "" && values.rememberEmail === true) {
+    //   localStorage.setItem("rememberEmail", values.rememberEmail.toString());
+    //   localStorage.setItem("email", values.email);
+    // } else {
+    //   localStorage.setItem("rememberEmail", "false");
+    //   localStorage.setItem("email", "");
+    // }
 
     // lowercase the email and trim white space around password
 
     const usr: any = await signIn(values.email.toLowerCase(), values.password.trim());
-    console.log("usr: ", usr);
+    console.debug("usr: ", usr);
     
-    // if (usr.status === "FAIL" || usr.error) {
-    //   return { [FORM_ERROR]: "login.block-form.loginError" };
+    if (usr.status === "SUCCESS" || usr.data) {
+      console.debug("SUCCESS");
+      console.debug("user :", usr.data);
+      navigate("/shipments-dashboard");
+    } else if (usr.status === "FAIL" || usr.error){
+      return { [FORM_ERROR]: "login.block-form.loginError" };
+    }
     // } else if (
     //   usr.challengeName === "SMS_MFA" ||
     //   usr.challengeName === "SOFTWARE_TOKEN_MFA" ||
@@ -115,9 +121,7 @@ const Login = () => {
     // } else if (usr.challengeName === "NEW_PASSWORD_REQUIRED") {
     //   setShowNewPassword(true);
     //   setUnloggedUser(usr);
-    // } else {
-    //   navigate("/shipments-dashboard");
-    // }
+
   };
 
   // remove first and last name in local storage
@@ -162,8 +166,9 @@ const Login = () => {
         Object.keys(unloggedUser).length === 0 && (
           <LoginBox>
             <Grid container sx={{ pt: 0 }}>
-              <Grid item xs={12} sm={6}>
-                <LoginHeader
+              <Grid item xs={12} sm={5}>
+              <img className="signin-img" src={signinImg} alt="" />
+                {/* <LoginHeader
                   component="h1"
                   variant="display2"
                   color="fuchsiaAccessible.main"
@@ -172,9 +177,9 @@ const Login = () => {
                 </LoginHeader>
                 <Typography component="p" variant="lead">
                   {t("login.block1.header.short-intro")}
-                </Typography>
+                </Typography> */}
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12} sm={7}>
                 <Form
                   onSubmit={onSubmit}
                   initialValues={

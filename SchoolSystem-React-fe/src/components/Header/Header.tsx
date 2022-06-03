@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getI18n, useTranslation } from "react-i18next";
-import rivoLogo from "../../assets/images/rivo-logo.svg";
+import schoolLogo from "../../assets/images/vector.svg";
 import hamburger from "../../assets/images/hamburger-icon.svg";
 import LogoutIcon from "@mui/icons-material/Logout";
 import CloseIcon from "@mui/icons-material/Close";
@@ -43,6 +43,8 @@ function Header() {
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
     null
   );
+  const [userInitial, setUserInitial] = React.useState("");
+
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -90,10 +92,6 @@ function Header() {
       ? customerData[0]?.lastName?.charAt(0).toUpperCase() +
         customerData[0]?.lastName?.slice(1)
       : "");
-  //Get User Initial from FullName
-  let userInitial =
-    customerData[0]?.firstName.trim().split("")[0]?.toUpperCase() +
-    customerData[0]?.lastName.trim().split("")[0]?.toUpperCase();
 
   if (typeof userFullName === "string") {
     if (customerData[0]?.firstName && customerData[0]?.lastName) {
@@ -121,6 +119,7 @@ function Header() {
     window.location.reload();
   };
   useEffect(() => {
+    console.log('loading', loading);
     i18n.changeLanguage(langValue, (err, t) => {
       if (err)
         return console.debug(
@@ -130,7 +129,16 @@ function Header() {
       t("key");
       document.documentElement.lang = getI18n().resolvedLanguage;
     });
-  }, [i18n, langValue]);
+  }, [i18n, langValue, loading]);
+
+
+  useEffect(() => {
+    if (user.user && !user.loading) {
+      let username = user.user?.sub;
+      let initials = username!.charAt(0) + username?.split(".")[1].charAt(0);
+      setUserInitial(initials.toUpperCase());
+    }
+  }, [user]);
 
   //Set css class based on condition
   var languageclass,
@@ -153,13 +161,13 @@ function Header() {
             {/* LeftSide menu item */}
             <MainLeftNav>
               <div className="logo-wrapper">
-                <img src={rivoLogo} alt="Rivo" />
+                <img src={schoolLogo} alt="Rivo" />
               </div>
             </MainLeftNav>
             {/* Rightside menu item */}
             <MainRightNav>
               <MainRightNavItem>
-                <Collapse in={user.user !== null}>
+                {/* <Collapse in={user.user !== null}>
                   <div className="main-left-nav-item">
                     <MainLeftNavItemUL>
                       <MainLeftNavItemLi>
@@ -181,7 +189,7 @@ function Header() {
                       </MainLeftNavItemLi>
                     </MainLeftNavItemUL>
                   </div>
-                </Collapse>
+                </Collapse> */}
 
                 <div className={languageclass}>
                   <LanguageContainer panelopen="FR" paneloff="EN">
@@ -201,13 +209,13 @@ function Header() {
                 <div className={profileClass}>
                   <Collapse in={user.user !== null}>
                     <GreetingDiv>
-                      {loading ? (
+                      {/* {loading ? (
                         <HeaderButton>
                           <PersonOutlineIcon
                             sx={{ fontSize: "3rem" }}
                           ></PersonOutlineIcon>
                         </HeaderButton>
-                      ) : (
+                      ) : ( */}
                         <HeaderButton
                           tabIndex={0}
                           aria-label={initial}
@@ -226,7 +234,7 @@ function Header() {
                         >
                           {userInitial}
                         </HeaderButton>
-                      )}
+                      {/* )} */}
                     </GreetingDiv>
                     <PopoverDiv
                       id={id}
@@ -311,7 +319,7 @@ function Header() {
               >
                 <DrawerPaper>
                   <LogoWrapper>
-                    <img src={rivoLogo} alt="Rivo" />
+                    <img src={schoolLogo} alt="Rivo" />
                   </LogoWrapper>
                   <CloseIcon
                     className="close-icon"

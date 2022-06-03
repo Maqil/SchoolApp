@@ -45,7 +45,7 @@ const ResetPassword = ({ email }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   TabTitle(t("resetPassword.block1.header.page-title"));
-  const { forgotPasswordSubmit } = useAuth();
+  // const { forgotPasswordSubmit } = useAuth();
 
   const [submittedValues, setSubmittedValues] = useState<
     ResetPasswordInterface | undefined
@@ -64,23 +64,23 @@ const ResetPassword = ({ email }) => {
 
   const onSubmit = async (values: ResetPasswordInterface) => {
     setSubmittedValues(values);
-    const data: any = await forgotPasswordSubmit(
-      email,
-      values.verificationCode,
-      values.newPassword
-    );
+    // const data: any = await forgotPasswordSubmit(
+    //   email,
+    //   values.verificationCode,
+    //   values.newPassword
+    // );
 
-    if (data.status === "FAIL" || data.error) {
-      return { [FORM_ERROR]: "resetPassword.block-form.resetError" };
-    } else {
-      navigate("/login", {
-        state: {
-          showAlert: true,
-          severity: "success",
-          message: "resetPassword.header.page-success-alert"
-        }
-      });
-    }
+    // if (data.status === "FAIL" || data.error) {
+    //   return { [FORM_ERROR]: "resetPassword.block-form.resetError" };
+    // } else {
+    //   navigate("/login", {
+    //     state: {
+    //       showAlert: true,
+    //       severity: "success",
+    //       message: "resetPassword.header.page-success-alert"
+    //     }
+    //   });
+    // }
   };
 
   const handleMouseDownPassword = event => {

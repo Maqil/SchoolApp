@@ -8,6 +8,12 @@ export const LoginBox = styled((props: any) => <Box {...props} />)(({ theme }) =
   [theme.breakpoints.up("sm")]: {
     marginLeft: 0,
     marginRight: 0
+  },
+  "& .signin-img": {
+    display: "inline-block",
+    border: 'none',
+    borderRadius: "2.75rem",
+    width: "32rem"
   }
 }));
 
