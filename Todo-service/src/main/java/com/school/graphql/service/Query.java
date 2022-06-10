@@ -93,7 +93,7 @@ public class Query {
     }
 
     @GraphQLQuery(name = "fetchEnrollmentById")
-    public Enrollment fetchEnrollmentById(@GraphQLArgument(name = "id") Integer id) {
+    public Enrollment fetchEnrollmentById(@GraphQLArgument(name = "id") Long id) {
         return enrollmentRepository.findById(id).get();
     }
 
@@ -138,5 +138,13 @@ public class Query {
     @GraphQLQuery(name = "fetchSubjectByName")
     public List<Subject> fetchSubjectByName(@GraphQLArgument(name = "name") String name) {
         return subjectRepository.findBySubjectNameContains(name);
+    }
+
+    @GraphQLQuery(name = "getTodosByStudentId")
+    public List<Subject> getTodosByStudentId(@GraphQLArgument(name = "id") Long id) {
+        Enrollment enrollment = enrollmentRepository.findById(id).get();
+        logger.info("enrollment {}", enrollment);
+        return null;
+        // return subjectRepository.findBySubjectNameContains(name);
     }
 }

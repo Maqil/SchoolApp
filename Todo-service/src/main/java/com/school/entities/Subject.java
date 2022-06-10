@@ -16,7 +16,7 @@ import java.util.Set;
 public class Subject {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer subjectAiid;
 
     private String subjectName;
@@ -36,4 +36,10 @@ public class Subject {
 
     @ManyToOne
     private Admin admin;
+
+    public Subject (String subjectName, Set todos, Admin admin) {
+      this.subjectName = subjectName;
+      this.todos = todos;
+      this.admin = admin;
+    }
 }

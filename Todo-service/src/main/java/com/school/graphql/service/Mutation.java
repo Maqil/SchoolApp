@@ -46,13 +46,13 @@ public class Mutation {
         return adminRepository.save(new Admin(username, email, password));
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
-    @PreAuthorize("hasRole('ADMIN')")
-    @GraphQLMutation(name = "addEnrollment")
-    public Enrollment addEnrollment(@GraphQLArgument(name = "enrollment") Enrollment enrollment) {
-        System.out.println(enrollment.getEmail());
-        return enrollmentRepository.save(new Enrollment(enrollment.getUsername(), enrollment.getEmail(), enrollment.getPassword(), enrollment.getFirstName(), enrollment.getLastName(), enrollment.getEnabled()));
-    }
+    // @CrossOrigin(origins = "http://localhost:3000")
+    // @PreAuthorize("hasRole('ADMIN')")
+    // @GraphQLMutation(name = "addEnrollment")
+    // public Enrollment addEnrollment(@GraphQLArgument(name = "enrollment") Enrollment enrollment) {
+    //     System.out.println(enrollment.getEmail());
+    //     return enrollmentRepository.save(new Enrollment(enrollment.getUsername(), enrollment.getEmail(), enrollment.getPassword(), enrollment.getFirstName(), enrollment.getLastName(), enrollment.getEnabled()));
+    // }
 
     @PreAuthorize("hasRole('ADMIN')")
     @GraphQLMutation(name = "addProfessor")

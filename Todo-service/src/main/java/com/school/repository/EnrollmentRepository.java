@@ -6,6 +6,6 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface EnrollmentRepository extends JpaRepository<Enrollment, Integer> {
+public interface EnrollmentRepository extends JpaRepository<Enrollment, Long> {
     public List<Enrollment> findByUsernameContains(@Param(value = "mc") String mc);
 }

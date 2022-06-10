@@ -8,6 +8,9 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.impl.DefaultClock;
 import com.school.entities.User;
 import com.school.repository.UserRepository;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -29,6 +32,8 @@ public class JwtTokenUtil implements Serializable {
     private String secret;
 
     private Map<String, String> userTokensMap = new HashMap();
+
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     private UserRepository userRepository;
@@ -67,10 +72,10 @@ public class JwtTokenUtil implements Serializable {
                 .setSubject(subject)
                 .setIssuedAt(createdDate)
                 .signWith(SignatureAlgorithm.HS512, secret)
-//                .signWith(
-//                        SignatureAlgorithm.HS256,
-//                        "secret".getBytes()
-//                )
+              //  .signWith(
+              //          SignatureAlgorithm.HS256,
+              //          "secret".getBytes()
+              //  )
                 .compact();
         //Add token to DB
         Optional<User> user = userRepository.findByUsername(subject);
@@ -78,6 +83,8 @@ public class JwtTokenUtil implements Serializable {
         userRepository.save(user.get());
 
         getUserTokensMap().put(subject, token);
+
+        logger.info("success...");
 
         return token;
     }

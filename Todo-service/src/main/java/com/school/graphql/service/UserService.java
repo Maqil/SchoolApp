@@ -66,6 +66,7 @@ public class UserService {
 //            if (encoder.matches(password, user.get().getPassword())) {
             if (user.get().getPassword().equals(password)) {
                 logger.info("success...");
+                logger.info("sub: {}", user.get().getUsername());
                 return jwtTokenUtil.generateToken(user.get().getUsername(), user.get().getRole());
             } else {
                 logger.info("Invalid Credentials1");

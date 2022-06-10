@@ -14,7 +14,7 @@ import java.util.Set;
 @AllArgsConstructor
 public class Enrollment extends User {
 
-    private Integer enrollmentAiid;
+    private Long enrollmentAiid;
 
     @OneToMany(mappedBy = "enrollment", fetch = FetchType.EAGER)
     @JsonProperty(access = JsonProperty.Access.READ_WRITE)
@@ -27,7 +27,7 @@ public class Enrollment extends User {
 
     }
 
-    public Enrollment(String username, String email, String password, String firstName, String lastName, Boolean enabled) {
+    public Enrollment(String username, String email, String password, Boolean enabled, String firstName, String lastName) {
         super(username, email, password, firstName, lastName, enabled, new Role(4L));
     }
 }
