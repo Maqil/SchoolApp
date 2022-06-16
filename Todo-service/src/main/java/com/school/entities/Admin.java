@@ -24,7 +24,7 @@ public class Admin extends User {
     private Set<Subject> subjectSet;
 
     @OneToMany(mappedBy = "admin", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private Set<Enrollment> enrollmentSet;
+    private Set<Student> studentSet;
 
     public Admin() {
     }

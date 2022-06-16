@@ -30,16 +30,19 @@ public class Subject {
 //    @OneToMany(mappedBy = "subject", fetch = FetchType.EAGER)
 //    private Set<Enrollment> enrollments;
 
-    @OneToMany(mappedBy = "subject", cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "subject", cascade = {CascadeType.MERGE})
     @JsonProperty(access = JsonProperty.Access.READ_WRITE)
     private Set<Todo> todos;
 
     @ManyToOne
     private Admin admin;
 
-    public Subject (String subjectName, Set todos, Admin admin) {
-      this.subjectName = subjectName;
-      this.todos = todos;
-      this.admin = admin;
-    }
+    @ManyToOne
+    private Grade grade;
+
+    // public Subject (String subjectName, Set todos, Admin admin) {
+    //   this.subjectName = subjectName;
+    //   this.todos = todos;
+    //   this.admin = admin;
+    // }
 }
